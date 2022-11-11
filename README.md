@@ -1,20 +1,30 @@
 ## PHP & MySQL Environment Setup with Docker
 
-Docker နဲ့ PHP + MySQL setup လုပ်နည်းလေးကို tutorial ရေးသွားမှာဖြစ်ပါတယ်။ Docker ကိုမသိသေးတဲ့သူပဲဖြစ်ဖြစ်၊ သိပြီး PHP Environment setup လိုအပ်လာရင်ပဲဖြစ်ဖြစ်အသုံးဝင်မယ်လို့ထင်ပါတယ်။ မသိသေးတဲ့သူအတွက်ဆို အစပြုဖို့လမ်းကြောင်းကောင်းတစ်ခုရသွားမယ်ထင်ပါတယ်။
+Docker နဲ့ PHP + MySQL setup လုပ်နည်းလေးကို tutorial ရေးသွားမှာဖြစ်ပါတယ်။ Docker ကိုမသိသေးတဲ့သူပဲဖြစ်ဖြစ်၊ 
+သိပြီး PHP Environment setup လိုအပ်လာရင်ပဲဖြစ်ဖြစ်အသုံးဝင်မယ်လို့ထင်ပါတယ်။ 
+မသိသေးတဲ့သူအတွက်ဆို အစပြုဖို့လမ်းကြောင်းကောင်းတစ်ခုရသွားမယ်ထင်ပါတယ်။
 
 ### Docker ဘာလို့သုံး ?
 
-Docker မသုံးခင်က PHP အတွက် environment setup လုပ်တော့မယ်ဆို XAMPP တို့လို all in one package တွေသုံးတယ်။ ဒါမှမဟုတ် လိုအပ်တဲ့ software တွေကို manual သွင်းတယ်။ နည်းနည်းအလုပ်ရှုပ်တယ်၊ သွင်းထားတဲ့ software version တစ်ခုပဲသုံးလို့ရမယ်၊ ဥပမာ PHP 7 သွင်းထားတယ်ဆို 7 ပဲသုံးလို့ရမယ်၊ 8 သွင်းမယ်ဆို manual installation/update ပြန်လုပ်ဖို့လိုမယ်။--
+Docker မသုံးခင်က PHP အတွက် environment setup လုပ်တော့မယ်ဆို XAMPP တို့လို all in one package တွေသုံးတယ်။ ဒါမှမဟုတ် လိုအပ်တဲ့ software တွေကို manual သွင်းတယ်။ နည်းနည်းအလုပ်ရှုပ်တယ်၊ သွင်းထားတဲ့ software version တစ်ခုပဲသုံးလို့ရမယ်၊ ဥပမာ PHP 7 သွင်းထားတယ်ဆို 7 ပဲသုံးလို့ရမယ်၊ 8 သွင်းမယ်ဆို manual installation/update ပြန်လုပ်ဖို့လိုမယ်။
 
 Docker သုံးရင်ဒါတွေဖြေရှင်းနိုင်မယ်။ အကြမ်းဖျင်း intro ဝင်ရမယ်ဆို docker ဆိုတာ development လုပ်ဖို့အတွက် virtual environments တွေဖန်တီးပေးတယ်၊ environments တိုင်းကလည်း isolate (တစ်ခုပေါ်တစ်ခုမမှီခို) ဖြစ်စေတဲ့ PaaS (Platform as a service) တစ်ခုပဲဖြစ်စပါတယ်။ 
+
 Docker မှာ image တွေရှိတယ်၊ image ဆိုတာကတော့ ပြောင်းလဲလို့မရတဲ့(immutable/read-only) ဖြစ်တဲ့ pre-defined source code တွေ၊ libraries တွေကိုဆိုလိုတာဖြစ်ပါတယ်။
-Image တွေက template လိုပုံစံတွေဖြစ်တဲ့အတွက်သူ့ချည်းပဲ run လို့မရဘူး။ ဒါကြောင့်ဒီ Image တွေကို base လုပ်ပြီးတော့ container ဆိုတာကိုဖန်တီးလို့ရပါတယ်။ Container ဆိုတာကိုဖန်တီးလိုက်ခြင်းအားဖြင့် immutable ဖြစ်တဲ့ Images တွေအပေါ်ကို write လုပ်လို့ရမယ့် layer တစ်ခုရလာပါတယ်။ ဒီ container တွေက ကိုယ့်ရဲ့ OS ပေါ်မှာမှီခိုခြင်းမရှိသလို container အချင်းချင်းလည်းမှီခိုခြင်းမရှိဘဲ run နိုင်တဲ့ virtual environment တွေပဲဖြစ်ပါတယ်၊ ဒါကြောင့်မို့ docker container တွေကို isolated virtual run-time environment လို့ခေါ်ခြင်းဖြစ်ပါတယ်။
-ဥပမာအခု tutorial မှာဆို ကျနော်တို့ container တစ်ခုဖန်တီးမယ်၊ container ထဲမှာ PHP, MySQL, Web Server softwares (docker images)တွေပါမယ်။ ကိုယ့်ရဲ့PC/server ပေါ်မှာအဲ့လိုမျိုး container တွေ တစ်ခုထက်မက လိုသလိုဆောက်ပြီး run သွားလို့ရတယ်။ ကိုယ်သုံးနေတဲ့ OS ပေါ်မှာတင် Project တစ်ခုနဲ့တစ်ခုမှာမတူတဲ့ software version တွေသွင်းပြီးအသုံးပြုနိုင်မယ်။ Project ကို move/deploy လုပ်ရတာလွယ်သွားမယ်။ ဥပမာ server ပေါ်တင်တော့မယ်ဆိုအရင်ကလို software တွေကို manual လိုက်သွင်းနေစရာမလိုတော့ဘူး။ docker folder တင်လိုက်တာနဲ့ကိုယ်သတ်မှတ်ထားတဲ့ environment configuration setting တွေအတိုင်း installation လုပ်သွားမယ်။ server ပေါ်မှာသွင်းပြီးသားတွေရှိရင်လည်း container ပေါ် tie ဖြစ်ပြီး installation လုပ်တဲ့အတွက် conflict ဖြစ်စရာမရှိတော့ဘူး။ local မှာအလုပ်လုပ်တယ်၊ server မှာအလုပ်မလုပ်ဘူးဆိုတဲ့အရာတွေကိုဖြေရှင်းသွားနိုင်မယ်။ Environment setup အပိုင်းကိုဆက်သွားမှာဖြစ်လို့ Docker ကိုအကြမ်းဖျင်းပဲရေးသွားနိုင်တာ နားလည်ပေးပါဗျ။ Docker အကြောင်းနားမလည်သေးဘူးဆို မိမိဘာသာတီးမိခေါက်မိရှိလောက်အောင် စာထပ်ဖတ်ဖို့အကြံပေးချင်ပါတယ်။
+
+Image တွေက template လိုပုံစံတွေဖြစ်တဲ့အတွက်သူ့ချည်းပဲ run လို့မရဘူး။ ဒါကြောင့်ဒီ Image တွေကို base လုပ်ပြီးတော့ container ဆိုတာကိုဖန်တီးလို့ရပါတယ်။ 
+Container ဆိုတာကိုဖန်တီးလိုက်ခြင်းအားဖြင့် immutable ဖြစ်တဲ့ Images တွေအပေါ်ကို write လုပ်လို့ရမယ့် layer တစ်ခုရလာပါတယ်။ ဒီ container တွေက ကိုယ့်ရဲ့ OS ပေါ်မှာမှီခိုခြင်းမရှိသလို container အချင်းချင်းလည်းမှီခိုခြင်းမရှိဘဲ run နိုင်တဲ့ virtual environment တွေပဲဖြစ်ပါတယ်၊ ဒါကြောင့်မို့ docker container တွေကို isolated virtual run-time environment လို့ခေါ်ခြင်းဖြစ်ပါတယ်။
+
+ဥပမာအခု tutorial မှာဆို ကျနော်တို့ container တစ်ခုဖန်တီးမယ်၊ container ထဲမှာ PHP, MySQL, Web Server softwares (docker images)တွေပါမယ်။ ကိုယ့်ရဲ့PC/server ပေါ်မှာအဲ့လိုမျိုး container တွေ တစ်ခုထက်မက လိုသလိုဆောက်ပြီး run သွားလို့ရတယ်။ ကိုယ်သုံးနေတဲ့ OS ပေါ်မှာတင် Project တစ်ခုနဲ့တစ်ခုမှာမတူတဲ့ software version တွေသွင်းပြီးအသုံးပြုနိုင်မယ်။ Project ကို move/deploy လုပ်ရတာလွယ်သွားမယ်။
+
+ဥပမာ server ပေါ်တင်တော့မယ်ဆိုအရင်ကလို software တွေကို manual လိုက်သွင်းနေစရာမလိုတော့ဘူး။ docker folder တင်လိုက်တာနဲ့ကိုယ်သတ်မှတ်ထားတဲ့ environment configuration setting တွေအတိုင်း installation လုပ်သွားမယ်။ server ပေါ်မှာသွင်းပြီးသားတွေရှိရင်လည်း container ပေါ် tie ဖြစ်ပြီး installation လုပ်တဲ့အတွက် conflict ဖြစ်စရာမရှိတော့ဘူး။ local မှာအလုပ်လုပ်တယ်၊ server မှာအလုပ်မလုပ်ဘူးဆိုတဲ့အရာတွေကိုဖြေရှင်းသွားနိုင်မယ်။ 
+
+Environment setup အပိုင်းကိုဆက်သွားမှာဖြစ်လို့ Docker ကိုအကြမ်းဖျင်းပဲရေးသွားနိုင်တာ နားလည်ပေးပါဗျ။ Docker အကြောင်းနားမလည်သေးဘူးဆို မိမိဘာသာတီးမိခေါက်မိရှိလောက်အောင် စာထပ်ဖတ်ဖို့အကြံပေးချင်ပါတယ်။
 
 Prerequisites အနေနဲ့ကျနော်တို့စက်ထဲမှာ docker installation လုပ်ထားဖို့လိုပါတယ်။ OS ပေါ်မူတည်ပြီး configuration တွေကွဲပြားနိုင်တာရှိတဲ့အတွက် official documentation ကိုကြည့်ပြီး installation လုပ်ပေးဖို့အကြံပေးချင်ပါတယ်။
 https://docs.docker.com/get-docker/
 
-အခု tutorial မှာတော့ PHP, MySQL နဲ့ web server အဖြစ် Nginx ကိုသုံးပြီးတော့ setup လုပ်ပြသွားမှာဖြစ်ပါတယ်။ အရင်ဆုံးအဲ့ဒီ services/images တွေကို create လုပ်ဖို့အတွက် yml configuration file တစ်ခုစဆောက်ပါမယ်။ 
+အခု tutorial မှာတော့ PHP, MySQL နဲ့ web server အဖြစ် NGINX ကိုသုံးပြီးတော့ setup လုပ်ပြသွားမှာဖြစ်ပါတယ်။ အရင်ဆုံးအဲ့ဒီ services/images တွေကို create လုပ်ဖို့အတွက် yml configuration file တစ်ခုစဆောက်ပါမယ်။ 
 
 folder/docker-compose.yml
 ```
@@ -30,7 +40,7 @@ Docker-compose yml specification အတွက် v3 ကိုအသုံးပ�
 https://docs.docker.com/compose/compose-file/compose-file-v3/
 
 -	services ဆိုတဲ့ key အောက်မှာကျနော်တို့လိုချင်တဲ့ service နဲ့ image တွေ define လုပ်လို့ရပါတယ်။ 
--	ပထမဦးဆုံး web-server စဆောက်ပါမယ်။ web-server အောက်မှာတော့ nginx image ကိုလှမ်းခေါ်သုံးပါမယ်။ (You can change `web-server` name to anything you want)
+-	ပထမဦးဆုံး web-server စဆောက်ပါမယ်။ web-server အောက်မှာတော့ NGINX image ကိုလှမ်းခေါ်သုံးပါမယ်။ (You can change `web-server` name to anything you want)
 -	latest နေရာမှာကိုယ်လိုချင်တဲ့ version ကို define လုပ်နိုင်ပါတယ်။
 -	yml file တွေက nesting structure နဲ့သွားတဲ့အတွက် file indentation ကိုဂရုပြုရပါမယ်။
 -	web server အတွက် port 80 ကိုအသုံးပြုထားပေမယ့် ကိုယ့်စက်ထဲမှာတစ်ခြားသော software တွေက same port ကိုသုံးထားတာရှိရင်တော့ပိတ်ထားပေးဖို့လိုပါတယ်။
