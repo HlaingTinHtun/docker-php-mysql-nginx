@@ -4,7 +4,8 @@ Docker နဲ့ PHP + MySQL setup လုပ်နည်းလေးကို tu
 
 ### Docker ဘာလို့သုံး ?
 
-Docker မသုံးခင်က PHP အတွက် environment setup လုပ်တော့မယ်ဆို XAMPP တို့လို all in one package တွေသုံးတယ်။ ဒါမှမဟုတ် လိုအပ်တဲ့ software တွေကို manual သွင်းတယ်။ နည်းနည်းအလုပ်ရှုပ်တယ်၊ သွင်းထားတဲ့ software version တစ်ခုပဲသုံးလို့ရမယ်၊ ဥပမာ PHP 7 သွင်းထားတယ်ဆို 7 ပဲသုံးလို့ရမယ်၊ 8 သွင်းမယ်ဆို manual installation/update ပြန်လုပ်ဖို့လိုမယ်။
+Docker မသုံးခင်က PHP အတွက် environment setup လုပ်တော့မယ်ဆို XAMPP တို့လို all in one package တွေသုံးတယ်။ ဒါမှမဟုတ် လိုအပ်တဲ့ software တွေကို manual သွင်းတယ်။ နည်းနည်းအလုပ်ရှုပ်တယ်၊ သွင်းထားတဲ့ software version တစ်ခုပဲသုံးလို့ရမယ်၊ ဥပမာ PHP 7 သွင်းထားတယ်ဆို 7 ပဲသုံးလို့ရမယ်၊ 8 သွင်းမယ်ဆို manual installation/update ပြန်လုပ်ဖို့လိုမယ်။--
+
 Docker သုံးရင်ဒါတွေဖြေရှင်းနိုင်မယ်။ အကြမ်းဖျင်း intro ဝင်ရမယ်ဆို docker ဆိုတာ development လုပ်ဖို့အတွက် virtual environments တွေဖန်တီးပေးတယ်၊ environments တိုင်းကလည်း isolate (တစ်ခုပေါ်တစ်ခုမမှီခို) ဖြစ်စေတဲ့ PaaS (Platform as a service) တစ်ခုပဲဖြစ်စပါတယ်။ 
 Docker မှာ image တွေရှိတယ်၊ image ဆိုတာကတော့ ပြောင်းလဲလို့မရတဲ့(immutable/read-only) ဖြစ်တဲ့ pre-defined source code တွေ၊ libraries တွေကိုဆိုလိုတာဖြစ်ပါတယ်။
 Image တွေက template လိုပုံစံတွေဖြစ်တဲ့အတွက်သူ့ချည်းပဲ run လို့မရဘူး။ ဒါကြောင့်ဒီ Image တွေကို base လုပ်ပြီးတော့ container ဆိုတာကိုဖန်တီးလို့ရပါတယ်။ Container ဆိုတာကိုဖန်တီးလိုက်ခြင်းအားဖြင့် immutable ဖြစ်တဲ့ Images တွေအပေါ်ကို write လုပ်လို့ရမယ့် layer တစ်ခုရလာပါတယ်။ ဒီ container တွေက ကိုယ့်ရဲ့ OS ပေါ်မှာမှီခိုခြင်းမရှိသလို container အချင်းချင်းလည်းမှီခိုခြင်းမရှိဘဲ run နိုင်တဲ့ virtual environment တွေပဲဖြစ်ပါတယ်၊ ဒါကြောင့်မို့ docker container တွေကို isolated virtual run-time environment လို့ခေါ်ခြင်းဖြစ်ပါတယ်။
