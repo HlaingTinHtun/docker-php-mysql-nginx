@@ -19,7 +19,8 @@ Container ဆိုတာကိုဖန်တီးလိုက်ခြင်�
 
 ဥပမာအခု tutorial မှာဆို ကျနော်တို့ container တစ်ခုဖန်တီးမယ်၊ container ထဲမှာ PHP, MySQL, Web Server softwares (docker images)တွေပါမယ်။ ကိုယ့်ရဲ့PC/server ပေါ်မှာအဲ့လိုမျိုး container တွေတစ်ခုထက်မကလိုသလိုဆောက်ပြီး run သွားလို့ရတယ်။ ကိုယ်သုံးနေတဲ့ OS ပေါ်မှာတင် Project တစ်ခုနဲ့တစ်ခုမှာမတူတဲ့ software version တွေသွင်းပြီးအသုံးပြုနိုင်မယ်။ Project ကို move/deploy လုပ်ရတာလွယ်သွားမယ်။
 
-ဥပမာ server ပေါ်တင်တော့မယ်ဆိုအရင်ကလို software တွေကို manual လိုက်သွင်းနေစရာမလိုတော့ဘူး။ docker folder တင်လိုက်တာနဲ့ကိုယ်သတ်မှတ်ထားတဲ့ environment configuration setting တွေအတိုင်း installation လုပ်သွားမယ်။ server ပေါ်မှာသွင်းပြီးသားတွေရှိရင်လည်း container ပေါ် tie ဖြစ်ပြီး installation လုပ်တဲ့အတွက် conflict ဖြစ်စရာမရှိတော့ဘူး။ local မှာအလုပ်လုပ်တယ်၊ server မှာအလုပ်မလုပ်ဘူးဆိုတဲ့အရာတွေကိုဖြေရှင်းသွားနိုင်မယ်။ 
+ဥပမာ server ပေါ်တင်တော့မယ်ဆိုအရင်ကလို software တွေကို manual လိုက်သွင်းနေစရာမလိုတော့ဘူး။ docker folder တင်လိုက်တာနဲ့ကိုယ်သတ်မှတ်ထားတဲ့ environment configuration setting တွေအတိုင်း installation လုပ်သွားမယ်။ server ပေါ်မှာသွင်းပြီးသားတွေရှိရင်လည်း container ပေါ် tie ဖြစ်ပြီး installation လုပ်တဲ့အတွက် conflict ဖြစ်စရာမရှိတော့ဘူး။ 
+local မှာအလုပ်လုပ်တယ်၊ server မှာအလုပ်မလုပ်ဘူးဆိုတဲ့အရာတွေကိုဖြေရှင်းသွားနိုင်မယ်။ 
 
 Environment setup အပိုင်းကိုဆက်သွားမှာဖြစ်လို့ Docker ကိုအကြမ်းဖျင်းပဲရေးသွားနိုင်တာ နားလည်ပေးပါဗျ။ Docker အကြောင်းနားမလည်သေးဘူးဆို မိမိဘာသာတီးမိခေါက်မိရှိလောက်အောင် စာထပ်ဖတ်ဖို့အကြံပေးချင်ပါတယ်။
 
@@ -179,7 +180,7 @@ services:
         - MYSQL_USER=root
         - MYSQL_PASSWORD=secret
       ports:
-            - 3306:3306
+        - 3306:3306
       
 volumes:
     mysqldata: {}
