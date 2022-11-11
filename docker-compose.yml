@@ -1,0 +1,29 @@
+version: '3'
+services:
+    web-server:
+        image: nginx:latest
+        ports:
+            - "80:80"
+        volumes:
+            - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+            - ./src:/src
+    php:
+        build:
+            context: .
+            dockerfile: PHP.Dockerfile
+        volumes:
+            - ./src:/src
+    mysql:
+      image: mysql
+      volumes:
+        - mysqldata:/var/lib/mysql
+      environment:
+        - MYSQL_ROOT_PASSWORD=secret
+        - MYSQL_DATABASE=dock-php
+        - MYSQL_USER=root
+        - MYSQL_PASSWORD=secret
+      ports:
+            - 3306:3306
+      
+volumes:
+    mysqldata: {}
